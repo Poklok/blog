@@ -12,6 +12,10 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     img = models.ImageField(upload_to='images/posts', )
 
+    class Meta:
+        verbose_name = 'Публикация'
+        verbose_name_plural = 'Публикации'
+
     def __str__(self):
         return self.title
 
@@ -29,3 +33,16 @@ class Comment(models.Model):
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
         ordering = ('-created',)
+
+
+class SubscriptionToAlerts(models.Model):
+    email = models.EmailField(max_length=254)
+    data_subscription = models.DateTimeField(auto_now_add=True)
+    subscription = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="text-center">
+    <h4 class="mb-5"><strong>Подписка на новости</strong></h4>
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'email' %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-primary">Подписаться на рассылку</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

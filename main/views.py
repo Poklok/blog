@@ -1,9 +1,11 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.views.generic import ListView, DetailView
+from django.views import View
+from django.views.generic import ListView, DetailView, TemplateView, CreateView
 
-from main.models import Post
+from main.forms import SubscriptionToAlertsForm
+from main.models import Post, SubscriptionToAlerts
 
 
 class PostListView(ListView):
@@ -17,3 +19,14 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
     context_object_name = 'post'
+
+
+class AboutView(TemplateView):
+    template_name = 'about.html'
+
+
+class SubscriptionToAlertsView(CreateView):
+    model = SubscriptionToAlerts
+    form_class = SubscriptionToAlertsForm
+    success_url = '/'
+    template_name = 'email_subscription.html'
