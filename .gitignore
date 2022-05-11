@@ -2,3 +2,4 @@
 **/__pycache__
 **/migrations
 media
+/Blog/secret_conf.py

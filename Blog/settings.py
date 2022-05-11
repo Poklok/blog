@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+from secret_conf import host_user, host_password
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-import django.core.mail.backends.smtp
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -128,6 +129,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'poklokide@gmail.com'
-EMAIL_HOST_PASSWORD = 'poklokemailide123'
+EMAIL_HOST_USER = host_user
+EMAIL_HOST_PASSWORD = host_password
 EMAIL_PORT = 587
+
+# CELERY
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'

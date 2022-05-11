@@ -7,6 +7,8 @@ name = "pypi"
 django = "*"
 pillow = "*"
 psycopg2-binary = "*"
+celery = "*"
+redis = "*"
 
 [dev-packages]
 

@@ -6,8 +6,8 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView
 
 from main.forms import SubscriptionToAlertsForm, CommentForm
 from main.models import Post, SubscriptionToAlerts
-from main.servise import send
 
+from main.tasks import send_spam_mail
 
 class PostListView(ListView):
     model = Post
@@ -41,5 +41,5 @@ class SubscriptionToAlertsView(CreateView):
 
     def form_valid(self, form):
         form.save()
-        send(form.instance.email)
+        send_spam_mail.delay(form.instance.email)
         return super().form_valid(form)
